@@ -1,0 +1,112 @@
+/* Header Styles */
+header {
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 24px;
+}
+
+/* Navigation Styles */
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 15px;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li {
+  display: inline;
+}
+
+nav ul li a {
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+  font-size: 16px;
+  padding: 10px 15px; /* Better spacing */
+  display: inline-block;
+}
+
+nav ul li a:hover {
+  text-decoration: underline;
+}
+
+/* Hamburger Icon */
+.menu-icon {
+  display: none; /* Hidden by default */
+  cursor: pointer;
+  font-size: 30px;
+}
+
+/* Mobile Menu */
+@media (max-width: 768px) {
+  /* Show the hamburger icon only on mobile */
+  .menu-icon {
+    display: block;
+  }
+
+  /* Hide nav items by default on mobile */
+  .nav {
+    position: fixed;
+    top: 50px; /* Moves the menu below the hamburger icon */
+    right: 0;
+    background-color: #ffffff;
+    width: 200px; /* Fixed width for the mobile menu */
+    height: auto; /* Adjusts to fit content */
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 1);
+    margin-top: 10px;
+    z-index: 1000;
+    transition: transform 0.3s ease;
+    transform: translateX(100%); /* Hidden off-screen by default */
+    box-sizing: border-box;
+    overflow-y: auto;
+  }
+
+  /* When the menu is open, slide it in from the right */
+  .nav.open {
+    transform: translateX(0);
+  }
+
+  .nav ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center the nav items */
+    padding: 10px 0;
+    margin: 0;
+    width: 100%;
+  }
+
+  .nav ul li {
+    width: 100%;
+    text-align: center; /* Ensure full-width centering */
+    padding: -5px 0;
+  }
+
+  .nav ul li a {
+    font-size: 20px;
+    color: #333;
+    display: block;
+    text-align: center;
+    padding: 12px 5px; /* Improved padding */
+    width: 100%; /* Make links full width */
+    border-bottom: 1px solid #ddd;
+  }
+
+  .nav ul li a:hover {
+    background-color: #f1f1f1;
+  }
+}
+
+@media (max-width: 480px) {
+  header h1 {
+    font-size: 20px;
+  }
+}
+

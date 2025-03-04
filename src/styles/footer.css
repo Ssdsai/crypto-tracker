@@ -1,0 +1,10 @@
+/* Footer Styles */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    width: 100%;
+    margin-top: auto; /* This will push the footer to the bottom if content is less than screen height */
+  }
+  
