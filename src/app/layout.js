@@ -3,10 +3,11 @@
 import { QueryClient, QueryClientProvider } from 'react-query'; // Import QueryClient and QueryClientProvider
 import Header from '@/reusable-components/header'; // Import Header component
 import Footer from '@/reusable-components/footer'; // Import Footer component
-import '../styles/globals.css'; // Import global styles
-import '../styles/footer.css';
-import '../styles/header.css';
-import '../styles/pages.css';
+import '@/styles/globals.css'; // Import global styles
+import '@/styles/footer.css';
+import '@/styles/header.css';
+import '@/styles/pages.css';
+import Home from '@/app/page';
 
 // Create a QueryClient instance
 const queryClient = new QueryClient();
