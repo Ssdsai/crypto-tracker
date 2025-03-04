@@ -7,7 +7,6 @@ import '@/styles/globals.css'; // Import global styles
 import '@/styles/footer.css';
 import '@/styles/header.css';
 import '@/styles/pages.css';
-import Home from '@/Home/index';
 
 // Create a QueryClient instance
 const queryClient = new QueryClient();
@@ -24,7 +23,6 @@ export default function Layout({ children }) {
         <body className="flex flex-col min-h-screen">
           <Header /> {/* Your header component */}
           <main className="flex-grow">{children}</main> {/* Main content */}
-          <Home />
           <Footer /> {/* Your footer component */}
         </body>
       </html>
