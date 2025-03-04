@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export', // For static export
-
+  
   // Image optimization settings
   images: {
     unoptimized: true, // Disables image optimization (useful for static export)
@@ -24,10 +24,8 @@ const nextConfig = {
     //},
 };
 
-module.exports = nextConfig;
+export default nextConfig; // Correct export syntax for ESM (next.config.mjs)
 
 
-   //pwa: {
-      //dest: 'public',
-      // Other PWA options here (like disable: process.env.NODE_ENV === 'development' for testing)
-    //},
+
+   
