@@ -1,21 +1,19 @@
-'use client'; // Mark the file as a client component
+'use client';
 
-import { QueryClient, QueryClientProvider } from 'react-query'; // Import QueryClient and QueryClientProvider
-import Header from '../reusable-components/header'; // Import Header component
-import Home from '../Home/index';
-import Footer from '../reusable-components/footer'; // Import Footer component
-import '../styles/globals.css'; // Import global styles
-import '../reusable-components/footer.css';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import Header from '../reusable-components/header';
+//import Home from '../Home/index';
+import Footer from '../reusable-components/footer';
+
+import '../styles/globals.css'; // Import global styles **ONLY here**
 import '../styles/header.css';
 import '../styles/pages.css';
 
-
-// Create a QueryClient instance
 const queryClient = new QueryClient();
 
 export default function Layout({ children }) {
   return (
-    <QueryClientProvider client={queryClient}> {/* Wrap the layout with QueryClientProvider */}
+    <QueryClientProvider client={queryClient}>
       <html lang="en">
         <head>
           <meta charSet="UTF-8" />
@@ -23,9 +21,9 @@ export default function Layout({ children }) {
           <title>Crypto Price Tracker</title>
         </head>
         <body className="flex flex-col min-h-screen">
-          <Header /> {/* Your header component */}
-          <Home />
-          <Footer /> {/* Your footer component */}
+          <Header />
+          <main>{children}</main> {/* Render children if provided */}
+          <Footer />
         </body>
       </html>
     </QueryClientProvider>
