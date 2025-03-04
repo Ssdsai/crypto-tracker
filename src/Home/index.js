@@ -26,7 +26,7 @@ const fetchCryptoData = async () => {
     );
     return response.data;
   } catch (error) {
-    throw new Error('Sorry! CoinDecko allows only 5-15 calls per minute');
+    throw new Error('Sorry! CoinGecko allows only 5-15 calls per minute');
   }
 };
 
@@ -41,20 +41,20 @@ const useCryptoData = () => {
 const CryptoList = ({ data, search, blinkData }) => (
   <div className="crypto-list p-4">
     {Object.keys(data)
-      .filter((key) => key.includes(search.toLowerCase()))
+      .filter((key) => key.includes(search.toLowerCase())) // Case insensitive search
       .map((key) => (
         <div key={key} className="crypto-item border p-4 my-2 rounded-md flex items-center justify-between">
-          {/* Crypto Image */}
-          <img 
-            src={cryptoImages[key] || 'DEFAULT_IMAGE_URL'} 
-            alt={key} 
-            width={32} 
-            height={32} 
-            className="crypto-image" 
+          {/* Crypto Image using next/image */}
+          <Image
+            src={cryptoImages[key] || '/default-image.png'} // Default fallback image
+            alt={key}
+            width={32}
+            height={32}
+            className="crypto-image"
           />
           <h3 className="crypto-name flex-1 ml-2">{key.toUpperCase()}</h3>
           <p className={blinkData[key] ? 'price-blink' : ''}>
-            ${data[key].usd.toFixed(2)}
+            ${data[key]?.usd.toFixed(2)}
           </p>
         </div>
       ))}
@@ -87,8 +87,8 @@ const Home = () => {
     );
   }
 
-  if (error) {
-    return <p>Error fetching data: {error.message}</p>;
+  if (error || !data) {
+    return <p>Error fetching data: {error?.message}</p>;
   }
 
   return (
@@ -111,7 +111,7 @@ const Home = () => {
           <FontAwesomeIcon icon={faArrowsRotate} />
         </div>
       </div>
-      <br></br>
+
       <div>
         <CryptoList data={data} search={search} blinkData={blinkData} />
       </div>
