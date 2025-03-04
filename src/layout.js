@@ -1,13 +1,13 @@
 'use client'; // Mark the file as a client component
 
 import { QueryClient, QueryClientProvider } from 'react-query'; // Import QueryClient and QueryClientProvider
-import Header from '../reusable-components/header'; // Import Header component
-import Home from '../Home/index';
-import Footer from '../reusable-components/footer'; // Import Footer component
-import '../styles/globals.css'; // Import global styles
-import '../reusable-components/footer.css';
-import '../styles/header.css';
-import '../styles/pages.css';
+import Header from '@/reusable-components/header'; // Import Header component
+import Home from '@/Home/index';
+import Footer from '@/reusable-components/footer'; // Import Footer component
+import '@/styles/globals.css'; // Import global styles
+import '@/reusable-components/footer.css';
+import '@/styles/header.css';
+import '@/styles/pages.css';
 
 
 // Create a QueryClient instance

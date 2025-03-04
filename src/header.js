@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image"; // Import Next.js Image component
-import '../styles/header.css';
+import '@/styles/header.css';
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);

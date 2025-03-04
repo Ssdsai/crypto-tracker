@@ -1,7 +1,7 @@
   'use client'; // Mark the file as a client component
 
   import React from "react";
-  import "../reusable-components/footer.css";
+  import "@/reusable-components/footer.css";
 
   const Footer = () => {
       return (

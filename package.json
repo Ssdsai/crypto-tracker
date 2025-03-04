@@ -13,6 +13,7 @@
   "dependencies": {
     "@fortawesome/free-solid-svg-icons": "^6.7.2",
     "@fortawesome/react-fontawesome": "^0.2.2",
+    "@next/bundle-analyzer": "^15.2.1",
     "axios": "^1.8.1",
     "crypto-tracker": "file:",
     "docusaurus": "^1.14.7",

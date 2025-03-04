@@ -3,11 +3,11 @@
 import { useEffect, useState } from 'react';
 import { useQuery, useQueryClient } from 'react-query';
 import axios from 'axios';
-import { FontAwesomeIcon } from '../../node_modules/fortawesome/react-fontawesome';
-import { faArrowsRotate } from '../../node_modules/fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowsRotate } from '@fortawesome/free-solid-svg-icons';
 import Image from 'next/image';
 import '../styles/globals.css';
-import '../styles/pages.css';
+import '@/styles/pages.css';
 
 // Crypto image mapping
 const cryptoImages = {
