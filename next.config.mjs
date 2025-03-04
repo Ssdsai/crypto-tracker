@@ -1,7 +1,7 @@
 // Assign the config object to a variable first
 const nextConfig = {
   reactStrictMode: true,
-  assetPrefix: process.env.NODE_ENV === 'production' ? '/crypto-price-tracker' : '',
+  assetPrefix: process.env.NODE_ENV === 'production' ? '/crypto-tracker' : '',
   output: 'export',
   images: {
     unoptimized: true, // Disable image optimization
