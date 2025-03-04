@@ -6,8 +6,8 @@ import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowsRotate } from '@fortawesome/free-solid-svg-icons';
 import Image from 'next/image';
-import '../styles/globals.css';
-import '../styles/pages.css';
+import '@/styles/globals.css';
+import '@/styles/pages.css';
 
 // Crypto image mapping
 const cryptoImages = {

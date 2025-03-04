@@ -1,40 +1,32 @@
-<<<<<<< HEAD
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Crypto Price Tracker
 
-## Getting Started
+## 1. Project setup guide (how to run both web and mobile apps).
+- Install dependencies: `npm install`
+- Run: `npm run dev` this will start the server
+(To view in a web app)
+- Runs in localhost:3000
+- Node module such as react-query should be installed
 
-First, run the development server:
+(To View a mobile App)
+- PWA is added you can create a mobile app by clicking share on the link and to home screen. This works same as an app 
+or
+- You can also open website in chrome then Right-click on your page and select "Inspect" or press Ctrl + Shift + I (Windows) or Cmd + Option + I (Mac).
+- Click the Toggle device toolbar icon (it looks like a mobile device and tablet) or press Ctrl + Shift + M (Windows) / Cmd + Shift + M (Mac).
+- In the device toolbar, select a mobile device (like iPhone X, Pixel 2, etc.) from the dropdown menu. Now you can interact like a mobile app
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 2. API integration details (how data is fetched and updated).
+- Uses CoinGecko API.
+- Data fetched using React Query.
+- Caching and Fetching will be handled by react-query
+- Used try catch blocks for error handling
+- Data is updated in real-time for every 60 seconds (Since there is API call limit for CoinDecko) or Data is also updated when clicked on the refresh button
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## 3. State management explanation (why you chose React Query/Zustand/Context API).
+- Implemented with React Query so that we can handle it at the server level for realtime api updations.
+- 
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-=======
-# crypto-tracker
->>>>>>> 630b99abe6841cd681d3b9aa36088e4ab5bdaaaf
+## 4. Challenges & solutions you faced while building the project.
+- Handling API rate limits.
+- Optimizing for mobile responsiveness.
+- Problem with Docusaurus

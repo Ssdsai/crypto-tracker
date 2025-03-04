@@ -5,6 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "export": "next export",
+    "deploy": "gh-pages -d out",
     "start": "next start",
     "lint": "next lint"
   },
@@ -13,8 +15,10 @@
     "@fortawesome/react-fontawesome": "^0.2.2",
     "axios": "^1.8.1",
     "crypto-tracker": "file:",
+    "docusaurus": "^1.14.7",
     "express": "^4.21.2",
-    "next": "^15.2.0",
+    "gh-pages": "^6.3.0",
+    "next": "^15.2.1",
     "next-pwa": "^2.6.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
