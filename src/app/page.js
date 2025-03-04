@@ -1,6 +1,10 @@
 // src/app/page.js
-import Home from '../Home/index'; // Importing the Home component
 
 export default function Page() {
-  return <Home />; // Render the Home component here
+  return (
+    <main>
+      <h1>Welcome to Next.js 13!</h1>
+      <p>This is the default page structure using the App Directory.</p>
+    </main>
+  )
 }
