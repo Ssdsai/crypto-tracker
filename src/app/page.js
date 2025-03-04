@@ -1,101 +1,122 @@
-import Image from "next/image";
+'use client';
 
-export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.js
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+import { useEffect, useState } from 'react';
+import { useQuery, useQueryClient } from 'react-query';
+import axios from 'axios';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowsRotate } from '@fortawesome/free-solid-svg-icons';
+import Image from 'next/image';
+import '../styles/globals.css';
+import '../styles/pages.css';
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+// Crypto image mapping
+const cryptoImages = {
+  bitcoin: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Bitcoin.svg/800px-Bitcoin.svg.png',
+  ethereum: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Eth-diamond-rainbow.png/640px-Eth-diamond-rainbow.png',
+  dogecoin: 'https://as2.ftcdn.net/jpg/01/96/64/27/1000_F_196642769_IeVCHzJ4t8pocLXtCYgBw4Y3Su3kdCml.jpg',
+  cardano: 'https://cryptologos.cc/logos/cardano-ada-logo.png',
+  solana: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Solana_cryptocurrency_two.jpg/1200px-Solana_cryptocurrency_two.jpg',
+};
+
+// Function to fetch the crypto data
+const fetchCryptoData = async () => {
+  try {
+    const response = await axios.get(
+      'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,dogecoin,cardano,solana&vs_currencies=usd'
+    );
+    return response.data;
+  } catch (error) {
+    throw new Error('Sorry! CoinDecko allows only 5-15 calls per minute');
+  }
+};
+
+// Custom hook to fetch crypto data using React Query
+const useCryptoData = () => {
+  return useQuery('cryptoPrices', fetchCryptoData, {
+    refetchInterval: 60000, // Auto refresh every 60s
+    refetchOnWindowFocus: false, // Prevent refresh on window focus
+  });
+};
+
+const CryptoList = ({ data, search, blinkData }) => (
+  <div className="crypto-list p-4">
+    {Object.keys(data)
+      .filter((key) => key.includes(search.toLowerCase()))
+      .map((key) => (
+        <div key={key} className="crypto-item border p-4 my-2 rounded-md flex items-center justify-between">
+          {/* Crypto Image */}
+          <img 
+            src={cryptoImages[key] || 'DEFAULT_IMAGE_URL'} 
+            alt={key} 
+            width={32} 
+            height={32} 
+            className="crypto-image" 
+          />
+          <h3 className="crypto-name flex-1 ml-2">{key.toUpperCase()}</h3>
+          <p className={blinkData[key] ? 'price-blink' : ''}>
+            ${data[key].usd.toFixed(2)}
+          </p>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+      ))}
+  </div>
+);
+
+const Home = () => {
+  const [search, setSearch] = useState('');
+  const [blinkData, setBlinkData] = useState({});
+  const queryClient = useQueryClient();
+  const { data, isLoading, error, refetch } = useCryptoData();
+
+  const handleRefresh = () => {
+    refetch(); // Triggers data refetch
+    setBlinkData((prev) => {
+      const newBlinkData = {};
+      Object.keys(data).forEach((key) => {
+        newBlinkData[key] = true; // Mark all prices to blink
+      });
+      setTimeout(() => setBlinkData({}), 3000); // Reset blink state after 3 seconds
+      return newBlinkData;
+    });
+  };
+
+  if (isLoading) {
+    return (
+      <div className="loading-container">
+        <div className="spinner"></div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return <p>Error fetching data: {error.message}</p>;
+  }
+
+  return (
+    <div className="crypto-container">
+      <h1 className="crypto-dashboard-title">Dashboard</h1>
+
+      <div className="search-bar-container mb-4">
+        <input
+          type="text"
+          placeholder="Search Cryptocurrency"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          className="search-bar"
+        />
+        <div
+          onClick={handleRefresh} // Refresh prices and trigger blinking
+          className="refresh-emoji text-3xl cursor-pointer"
+          title="Refresh Prices"
         >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+          <FontAwesomeIcon icon={faArrowsRotate} />
+        </div>
+      </div>
+      <br></br>
+      <div>
+        <CryptoList data={data} search={search} blinkData={blinkData} />
+      </div>
     </div>
   );
-}
+};
+
+export default Home;

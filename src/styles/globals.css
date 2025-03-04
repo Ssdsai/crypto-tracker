@@ -1,0 +1,102 @@
+/* Global Styles */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Search bar and refresh button styles */
+.search-bar-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.search-bar {
+  padding: 0.5rem;
+  border: 2px solid #ccc;
+  border-radius: 50px;
+  width: 50%;
+  height: 30px;
+  text-align: center;
+  font: 90%;
+}
+
+.search-bar:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.refresh-emoji {
+  margin-left: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+/* Animation for updated data */
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.crypto-container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background: white;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.crypto-container h1 {
+  text-align: center;
+}
+
+.crypto-list {
+  list-style: none;
+  padding: 0;
+}
+
+/* Custom media query for screen sizes <= 768px */
+@media (max-width: 768px) {
+  .crypto-item {
+    width: 100%;
+  }
+
+  .search-bar-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .search-bar {
+    width: 100%;
+    margin-left: 0;
+    margin-bottom: 10px;
+  }
+
+  .refresh-emoji {
+    align-self: flex-end;
+  }
+}
+
+@media (max-width: 480px) {
+  .crypto-container {
+    padding: 10px;
+  }
+
+  .search-bar {
+    padding: 0.4rem;
+    font-size: 0.9rem;
+  }
+}
