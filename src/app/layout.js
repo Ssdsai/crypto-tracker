@@ -5,8 +5,9 @@ import Header from '../reusable-components/header';
 //import Home from '../Home/index';
 import Footer from '../reusable-components/footer';
 
-import '../styles/globals.css'; // Import global styles **ONLY here**
-import '../styles/header.css';
+import '@/app/globals.css'; // Import global styles **ONLY here**
+import '../app/footer.css';
+import '../app/header.css';
 import '../styles/pages.css';
 
 const queryClient = new QueryClient();

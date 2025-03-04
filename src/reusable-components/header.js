@@ -1,8 +1,7 @@
-'use client';
-
 import React, { useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
+import Image from "next/image"; // Import Next.js Image component
+import '../app/header.css';
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -14,25 +13,27 @@ const Header = () => {
   return (
     <header>
       <h1>
-        <Link href="/">
+        <Link href="./">
+          {/* Image next to the title */}
           <Image 
-            src="/images/logo.png" // Store logo in `public/images/`
+            src="https://media.licdn.com/dms/image/v2/D560BAQGkqVVEme8G_g/company-logo_200_200/company-logo_200_200/0/1707162144681/blockhouse_capital_logo?e=1749081600&v=beta&t=fbDRqWTGhms5m3bk5hBR9mqpwWZAy7PcqLXjEgsSYh4" // External image URL
             alt="Crypto Tracker Icon"
-            width={30}
-            height={30}
-            style={{ marginRight: "10px", marginTop:"5px" }}
+            width={30} // Adjust width as per your requirement
+            height={30} // Adjust height as per your requirement
+            style={{ marginRight: "10px", marginTop:"5px" }} // Space between image and text
           />
+          
         </Link>
         Crypto Tracker
       </h1>
       <div className={`menu-icon ${menuOpen ? "open" : ""}`} onClick={toggleMenu}>
-        &#9776;
+        &#9776; {/* Hamburger icon */}
       </div>
       <nav className={`nav ${menuOpen ? "open" : ""}`}>
         <ul>
-          <li><Link href="/">Home</Link></li>
-          <li><Link href="/about">About</Link></li>
-          <li><Link href="/contact">Contact</Link></li>
+          <li><a href="./">Home</a></li>
+          <li><a href="/about">About</a></li>
+          <li><a href="/contact">Contact</a></li>
         </ul>
       </nav>
     </header>
