@@ -1,5 +1,8 @@
 # Crypto Price Tracker
 
+Use the Link to view the Website
+https://crypto-tracker-6ivbviblk-ssdsais-projects.vercel.app/
+
 ## 1. Project setup guide (how to run both web and mobile apps).
 - Install dependencies: `npm install`
 - Run: `npm run dev` this will start the server
